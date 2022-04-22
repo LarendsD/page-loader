@@ -1,0 +1,36 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "[![Actions Status](https://github.com/LarendsD/backend-project-lvl3/workflows/hexlet-check/badge.svg)](https://github.com/LarendsD/backend-project-lvl3/actions)",
+  "bin": {
+    "pageLoader": "bin/page-loader.js"
+  },
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LarendsD/backend-project-lvl3.git"
+  },
+  "author": "LarendsD",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LarendsD/backend-project-lvl3/issues"
+  },
+  "homepage": "https://github.com/LarendsD/backend-project-lvl3#readme",
+  "devDependencies": {
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.4",
+    "jest": "^27.5.1",
+    "nock": "^13.2.4"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "commander": "^9.1.0",
+    "lodash": "^4.17.21"
+  }
+}
