@@ -1,0 +1,32 @@
+import _ from 'lodash';
+import path from 'path';
+
+class FileNameFormatter {
+  constructor(url) {
+    this.url = url;
+  }
+
+  getUrl() {
+    return new URL(this.url);
+  }
+
+  kebabCaseUrl() {
+    return _.kebabCase(this.url.split(`${this.getUrl().protocol}//`));
+  }
+
+  html() {
+    return `${this.kebabCaseUrl()}.html`;
+  }
+
+  dataDir() {
+    return `${this.kebabCaseUrl()}_files`;
+  }
+
+  image() {
+    const fullPath = new FileNameFormatter(path.parse(this.url).dir);
+    const format = path.parse(this.url).base;
+    return `${fullPath.kebabCaseUrl()}-${format}`;
+  }
+}
+
+export default FileNameFormatter;

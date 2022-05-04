@@ -1,13 +1,18 @@
 import axios from 'axios';
 import fs from 'fs/promises';
 import { cwd } from 'process';
-import fileNameBuilder from './fileBuilder.js';
+import path from 'path';
+import FileNameFormatter from './FileNameFormatter.js';
+import imageLoad from './imgLoader.js';
 
-async function pageLoad(url, pathToDir = cwd()) {
-  const fullPath = `${pathToDir}/${fileNameBuilder(url)}`;
-  await axios.get(url)
-    .then((response) => fs.writeFile(fullPath, response.data));
-  return fullPath;
+function pageLoad(url, pathToDir = cwd()) {
+  const formattedUrl = new FileNameFormatter(url);
+  const samplePath = path.join(pathToDir, formattedUrl.dataDir());
+  const resu = fs.mkdir(samplePath)
+    .then(() => axios.get(url))
+    .then((response) => imageLoad(response, formattedUrl.dataDir()))
+    .then((result) => fs.writeFile(path.join(pathToDir, formattedUrl.html()), result));
+  return resu;
 }
 
 export default pageLoad;
