@@ -14,13 +14,13 @@ beforeAll(async () => {
   afterFile = await fs.readFile('./__fixtures__/ru-hexlet-io-coursesComplete.html', 'utf-8');
 });
 
-test('pageLoaderGet', async () => {
+test('pageLoadAndImageLoad', async () => {
   nock('https://ru.hexlet.io')
     .get('/courses')
     .reply(200, beforeFile);
   await pageLoad('https://ru.hexlet.io/courses', testDir);
-  const result = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses.html'), 'utf-8');
-  expect(result).toBe(afterFile);
+  const html = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses.html'), 'utf-8');
+  expect(html).toBe(afterFile);
 });
 
 afterAll(async () => {

@@ -22,10 +22,13 @@ class FileNameFormatter {
     return `${this.kebabCaseUrl()}_files`;
   }
 
-  image() {
+  other() {
     const fullPath = new FileNameFormatter(path.parse(this.url).dir);
-    const format = path.parse(this.url).base;
-    return `${fullPath.kebabCaseUrl()}-${format}`;
+    let file = path.parse(this.url).base;
+    if (path.parse(this.url).ext === '') {
+      file += '.html';
+    }
+    return `${fullPath.kebabCaseUrl()}-${file}`;
   }
 }
 

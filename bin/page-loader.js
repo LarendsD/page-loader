@@ -11,7 +11,7 @@ pageLoader
   .helpOption('-h, --help', 'display help for command')
   .option('-o, --output [dir]', 'output dir', process.cwd())
   .action(async (url, option) => {
-    console.log('Copying Images and html...');
+    console.log('Copying site...');
     await pageLoad(url, option.output);
     console.log('Copying Complete!');
   });

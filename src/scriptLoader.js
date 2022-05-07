@@ -1,23 +1,21 @@
-import * as cheerio from 'cheerio';
 import axios from 'axios';
 import fs from 'fs/promises';
 import path from 'path';
 import _ from 'lodash';
 import FileNameFormatter from './FileNameFormatter.js';
 
-const imageLoad = (response, pathToFiles, url) => {
-  const $ = cheerio.load(response.data);
-  const arrayOfPromises = ($('img')
+const scriptLoad = ($, pathToFiles, url) => {
+  const arrayOfPromises = ($('script')
     .map((i, el) => {
-      const linkToImage = new URL($(el).attr('src'), url.origin);
-      if (linkToImage.origin !== url.origin) {
+      const linkToScript = new URL($(el).attr('src'), url.origin);
+      if (linkToScript.origin !== url.origin) {
         return null;
       }
-      const linkToFile = new FileNameFormatter(linkToImage.href);
+      const linkToFile = new FileNameFormatter(linkToScript.href);
       const promise = axios({
         method: 'get',
-        url: linkToImage.href,
-        responseType: 'stream',
+        url: linkToScript.href,
+        responseType: 'json',
       })
         .then((resp) => fs.writeFile(path.join(pathToFiles, linkToFile.other()), resp.data))
         .then(() => null)
@@ -29,4 +27,4 @@ const imageLoad = (response, pathToFiles, url) => {
   return result.then(() => $);
 };
 
-export default imageLoad;
+export default scriptLoad;
