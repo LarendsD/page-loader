@@ -8,7 +8,7 @@ const scriptLoad = ($, pathToFiles, url) => {
   const arrayOfPromises = ($('script')
     .map((i, el) => {
       const linkToScript = new URL($(el).attr('src'), url.origin);
-      if (linkToScript.origin !== url.origin) {
+      if (linkToScript.origin !== url.origin || $(el).attr('src') === undefined) {
         return null;
       }
       const linkToFile = new FileNameFormatter(linkToScript.href);

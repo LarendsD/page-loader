@@ -10,6 +10,7 @@ import scriptLoad from './scriptLoader.js';
 function pageLoad(url, pathToDir = cwd()) {
   const formattedUrl = new FileNameFormatter(url);
   const samplePath = path.join(pathToDir, formattedUrl.dataDir());
+  console.log(url);
   const resu = fs.mkdir(samplePath)
     .then(() => axios.get(url))
     .then((response) => imageLoad(response, samplePath, new URL(url)))

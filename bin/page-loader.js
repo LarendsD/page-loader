@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
+import axiosdebuglog from 'axios-debug-log';
 import pageLoad from '../src/index.js';
 
 const pageLoader = new Command();
@@ -17,5 +18,20 @@ pageLoader
   });
 
 pageLoader.parse(process.argv);
+
+axiosdebuglog({
+  request(debug, config) {
+    debug(`Request with ${config.url}`);
+  },
+  response(debug, response) {
+    debug(
+      `Response with ${response.headers['content-type']}`,
+      `from ${response.config.url}`,
+    );
+  },
+  error(debug, error) {
+    debug('Boom', error);
+  },
+});
 
 export default pageLoader;
