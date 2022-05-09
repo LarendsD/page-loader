@@ -12,12 +12,14 @@ const linkLoad = ($, pathToFiles, url) => {
         return null;
       }
       const linkToFile = new FileNameFormatter(linkToLink.href);
-      const promise = axios({
-        method: 'get',
-        url: linkToLink.href,
-        responseType: 'json',
-      })
-        .then((resp) => fs.writeFile(path.join(pathToFiles, linkToFile.other()), resp.data))
+      const promise = axios.get(linkToLink.href)
+        .then((resp) => {
+          if (_.isObject(resp.data)) {
+            fs.writeFile(path.join(pathToFiles, linkToFile.other()), JSON.stringify(resp.data));
+          } else {
+            fs.writeFile(path.join(pathToFiles, linkToFile.other()), resp.data);
+          }
+        })
         .then(() => null)
         .catch(() => null);
       $(el).attr('href', `${_.last(pathToFiles.split('/'))}/${linkToFile.other()}`);

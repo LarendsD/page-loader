@@ -11,10 +11,9 @@ pageLoader
   .option('-V, --version', 'output the version number')
   .helpOption('-h, --help', 'display help for command')
   .option('-o, --output [dir]', 'output dir', process.cwd())
-  .action(async (url, option) => {
-    console.log('Copying site...');
-    await pageLoad(url, option.output);
-    console.log('Copying Complete!');
+  .action((url, option) => {
+    pageLoad(url, option.output)
+      .then(() => process.exit(console.log('Success!')));
   });
 
 pageLoader.parse(process.argv);
@@ -29,8 +28,8 @@ axiosdebuglog({
       `from ${response.config.url}`,
     );
   },
-  error(debug, error) {
-    debug('Boom', error);
+  error(debug, err) {
+    debug('Boom', err);
   },
 });
 

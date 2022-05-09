@@ -12,11 +12,7 @@ const scriptLoad = ($, pathToFiles, url) => {
         return null;
       }
       const linkToFile = new FileNameFormatter(linkToScript.href);
-      const promise = axios({
-        method: 'get',
-        url: linkToScript.href,
-        responseType: 'json',
-      })
+      const promise = axios.get(linkToScript.href)
         .then((resp) => fs.writeFile(path.join(pathToFiles, linkToFile.other()), resp.data))
         .then(() => null)
         .catch(() => null);
