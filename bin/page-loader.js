@@ -13,7 +13,7 @@ pageLoader
   .option('-o, --output [dir]', 'output dir', process.cwd())
   .action((url, option) => {
     pageLoad(url, option.output)
-      .then(() => process.exit(console.log('Success!')));
+      .then(() => process.exit(console.log(`${url} Loaded Successfully!`)));
   });
 
 pageLoader.parse(process.argv);
