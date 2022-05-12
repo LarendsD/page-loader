@@ -23,8 +23,7 @@ const scriptLoad = ($, pathToFiles, url) => {
               url: linkToScript.href,
               responseType: 'json',
             })
-              .then((resp) => fs.writeFile(fullPath, resp.data))
-              .catch(() => null);
+              .then((resp) => fs.writeFile(fullPath, resp.data));
             $(el).attr('src', `${_.last(pathToFiles.split('/'))}/${linkToFile.other()}`);
             return promise;
           },

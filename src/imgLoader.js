@@ -7,7 +7,7 @@ import Listr from 'listr';
 import FileNameFormatter from './FileNameFormatter.js';
 
 const imageLoad = (response, pathToFiles, url) => {
-  const $ = cheerio.load(response.data);
+  const $ = cheerio.load(response);
   const arrayOfPromises = ($('img')
     .map((i, el) => {
       const linkToImage = new URL($(el).attr('src'), url.origin);
@@ -24,8 +24,7 @@ const imageLoad = (response, pathToFiles, url) => {
               url: linkToImage.href,
               responseType: 'stream',
             })
-              .then((resp) => fs.writeFile(path.join(pathToFiles, linkToFile.other()), resp.data))
-              .catch(() => null);
+              .then((resp) => fs.writeFile(path.join(pathToFiles, linkToFile.other()), resp.data));
             $(el).attr('src', `${_.last(pathToFiles.split('/'))}/${linkToFile.other()}`);
             return promise;
           },

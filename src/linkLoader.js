@@ -30,8 +30,7 @@ const linkLoad = ($, pathToFiles, url) => {
                 } else {
                   fs.writeFile(path.join(pathToFiles, linkToFile.other()), resp.data);
                 }
-              })
-              .catch(() => null);
+              });
             $(el).attr('href', `${_.last(pathToFiles.split('/'))}/${linkToFile.other()}`);
             return promise;
           },
