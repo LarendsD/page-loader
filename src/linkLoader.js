@@ -23,7 +23,7 @@ const linkLoad = ($, pathToFiles, url) => {
               url: linkToLink.href,
               responseType: 'json',
             })
-              .then((resp) => fs.writeFile(fullPath, resp.data.trim()));
+              .then((resp) => fs.writeFile(fullPath, `${resp.data}\n`));
             $(el).attr('href', `${_.last(pathToFiles.split('/'))}/${linkToFile.other()}`);
             return promise;
           },
