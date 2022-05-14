@@ -23,14 +23,7 @@ const linkLoad = ($, pathToFiles, url) => {
               url: linkToLink.href,
               responseType: 'json',
             })
-              .then((resp) => {
-                // проверка для ссылок типа manifest.json
-                if (_.isObject(resp.data)) {
-                  fs.writeFile(fullPath, JSON.stringify(resp.data));
-                } else {
-                  fs.writeFile(path.join(pathToFiles, linkToFile.other()), resp.data);
-                }
-              });
+              .then((resp) => fs.writeFile(fullPath, resp.data));
             $(el).attr('href', `${_.last(pathToFiles.split('/'))}/${linkToFile.other()}`);
             return promise;
           },
