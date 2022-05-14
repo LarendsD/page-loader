@@ -22,8 +22,7 @@ beforeAll(async () => {
   beforeFile = await fs.readFile('./__fixtures__/ru-hexlet-io-courses.html', 'utf-8');
   afterFile = await fs.readFile('./__fixtures__/ru-hexlet-io-coursesComplete.html', 'utf-8');
   image = await fs.readFile('./__fixtures__/page-loader-hexlet-repl-co-assets-professions-nodejs.png', 'utf-8');
-  css = await fs.readFile('../__fixtures__/expected/site-com-blog-about_files/site-com-blog-about-assets-styles.css', 'utf-8');
-//  css = await fs.readFile('./__fixtures__/page-loader-hexlet-repl-co-assets-application.css', 'utf-8');
+  css = await fs.readFile('./__fixtures__/page-loader-hexlet-repl-co-assets-application.css', 'utf-8');
   script = await fs.readFile('./__fixtures__/page-loader-hexlet-repl-co-script.js', 'utf-8');
   htmlLink = await fs.readFile('./__fixtures__/page-loader-hexlet-repl-co-courses.html', 'utf-8');
 });
@@ -63,7 +62,7 @@ test('LinkLoad', async () => {
   await linkLoad(cheerio.load(beforeFile), path.join(testDir, 'ru-hexlet-io-courses_files'), new URL('https://ru.hexlet.io/courses'));
   const getCss = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-assets-application.css'), 'utf-8');
   const getHtml = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-courses.html'), 'utf-8');
-  expect(getCss.trim()).toBe(css.trim());
+  expect(getCss).toBe(css);
   expect(getHtml).toBe(htmlLink);
 });
 
@@ -95,6 +94,6 @@ test('when the url fails', async () => {
   await expect(pageLoad('https://ru.hexlet.io/courfault', testDir)).rejects.toThrow('Error 404 Not Found with https://ru.hexlet.io/courfault');
 });
 
-//afterAll(async () => {
-//  await fs.rm(testDir, { recursive: true, force: true });
-//});
+afterAll(async () => {
+  await fs.rm(testDir, { recursive: true, force: true });
+});
