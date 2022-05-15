@@ -22,7 +22,7 @@ class FileNameFormatter {
     return `${this.kebabCaseUrl()}_files`;
   }
 
-  other() {
+  resourse() {
     const fullPath = new FileNameFormatter(path.parse(this.url).dir);
     let file = path.parse(this.url).base;
     if (path.parse(this.url).ext === '') {
