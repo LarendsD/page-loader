@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/LarendsD/backend-project-lvl3/workflows/hexlet-check/badge.svg)](https://github.com/LarendsD/backend-project-lvl3/actions)",
   "bin": {
-    "pageLoader": "bin/page-loader.js"
+    "page-loader": "bin/page-loader.js"
   },
   "type": "module",
   "main": "src/index.js",

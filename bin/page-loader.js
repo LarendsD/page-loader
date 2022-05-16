@@ -3,9 +3,10 @@ import { Command } from 'commander';
 import axiosdebuglog from 'axios-debug-log';
 import pageLoad from '../src/index.js';
 
-const pageLoader = new Command();
+const program = new Command();
 
-pageLoader
+program
+  .name('page-loader')
   .description('Page loader utility.')
   .argument('<url>')
   .option('-V, --version', 'output the version number')
@@ -16,7 +17,7 @@ pageLoader
       .then(() => process.exit(console.log(`${url} Loaded Successfully!`)));
   });
 
-pageLoader.parse(process.argv);
+program.parse(process.argv);
 
 axiosdebuglog({
   request(debug, config) {
@@ -33,4 +34,4 @@ axiosdebuglog({
   },
 });
 
-export default pageLoader;
+export default program;
