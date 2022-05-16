@@ -14,7 +14,7 @@ function pageLoad(url, pathToDir = cwd()) {
     {
       title: url,
       task: () => {
-        const promise =  fs.mkdir(pathToFiles)
+        const promise = fs.mkdir(pathToFiles)
           .then(() => axios.get(url))
           .then((response) => resourseLoad(response.data, pathToFiles, new URL(url)))
           .then((result) => fs.writeFile(path.join(pathToDir, formattedUrl.html()), result.html()))

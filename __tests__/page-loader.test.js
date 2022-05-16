@@ -18,7 +18,7 @@ beforeAll(async () => {
   beforeFile = await fs.readFile('./__fixtures__/ru-hexlet-io-courses.html', 'utf-8');
   afterFile = await fs.readFile('./__fixtures__/ru-hexlet-io-coursesComplete.html', 'utf-8');
   image = await fs.readFile('./__fixtures__/page-loader-hexlet-repl-co-assets-professions-nodejs.png', 'utf-8');
-  css = await fs.readFile('../__fixtures__/expected/site-com-blog-about_files/site-com-blog-about-assets-styles.css', 'utf-8');
+  css = await fs.readFile('./__fixtures__/page-loader-hexlet-repl-co-assets-application.css', 'utf-8');
   script = await fs.readFile('./__fixtures__/page-loader-hexlet-repl-co-script.js', 'utf-8');
   htmlLink = await fs.readFile('./__fixtures__/page-loader-hexlet-repl-co-courses.html', 'utf-8');
 });
@@ -37,14 +37,26 @@ test('pageLoad', async () => {
     .reply(200, script);
   await pageLoad('https://ru.hexlet.io/courses', testDir);
   const getHtml = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses.html'), 'utf-8');
-  const getImage = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-assets-professions-nodejs.png'), 'utf-8');
-  const getCss = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-assets-application.css'), 'utf-8');
-  const getHtmlLink = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-courses.html'), 'utf-8');
-  const getScript = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-packs-js-runtime.js'), 'utf-8');
   expect(getHtml).toBe(afterFile);
+});
+
+test('getImage', async () => {
+  const getImage = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-assets-professions-nodejs.png'), 'utf-8');
   expect(getImage).toBe(image);
+});
+
+test('getCss', async () => {
+  const getCss = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-assets-application.css'), 'utf-8');
   expect(getCss).toBe(css);
+});
+
+test('getHtml', async () => {
+  const getHtmlLink = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-courses.html'), 'utf-8');
   expect(getHtmlLink).toBe(htmlLink);
+});
+
+test('getScript', async () => {
+  const getScript = await fs.readFile(path.join(testDir, 'ru-hexlet-io-courses_files/ru-hexlet-io-packs-js-runtime.js'), 'utf-8');
   expect(getScript).toBe(script);
 });
 
