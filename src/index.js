@@ -7,7 +7,7 @@ import FileNameFormatter from './FileNameFormatter.js';
 import resourseLoad from './resourseLoader.js';
 import ErrorHandler from './ErrorHandler.js';
 
-function pageLoad(url, pathToDir = cwd()) {
+const pageLoad = (url, pathToDir = cwd()) => {
   const formattedUrl = new FileNameFormatter(url);
   const pathToFiles = path.join(pathToDir, formattedUrl.dataDir());
   const task = new Listr([
@@ -26,6 +26,6 @@ function pageLoad(url, pathToDir = cwd()) {
     },
   ]);
   return task.run();
-}
+};
 
 export default pageLoad;

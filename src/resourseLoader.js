@@ -14,7 +14,7 @@ const source = {
 
 const resourseLoad = (response, pathToFiles, url) => {
   const $ = cheerio.load(response);
-  const arrayOfPromises = ($('img, link, script')
+  const promises = ($('img, link, script')
     .map((i, el) => {
       const { name } = el;
       const linkToResourse = new URL($(el).attr(source[name]), url.origin);
@@ -41,7 +41,7 @@ const resourseLoad = (response, pathToFiles, url) => {
       return task.run();
     })
   );
-  const result = Promise.all(arrayOfPromises);
+  const result = Promise.all(promises);
   return result.then(() => $);
 };
 

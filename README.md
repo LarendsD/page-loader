@@ -6,7 +6,7 @@
 Как она работает:
 page-loader (необходимая страница)
 По-умолчанию сайт вместе с ресурсами будет устанавливаться в ту директорию, где вы сейчас находитесь, но путь можно изменить задав параметр --output
-Чтобы перейти в режим debug, перед page-loader введите DEBUG=axios 
+Чтобы перейти в режим debug, перед page-loader введите DEBUG=axios! 
 Для помощи введите page-loader -h!
 <a href="https://asciinema.org/a/492777" target="_blank"><img src="https://asciinema.org/a/492777.svg" /></a>
 <a href="https://asciinema.org/a/dlsniD1tubE6rQhmRYDa3eSWC" target="_blank"><img src="https://asciinema.org/a/dlsniD1tubE6rQhmRYDa3eSWC.svg" /></a>
