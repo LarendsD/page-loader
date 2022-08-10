@@ -17,8 +17,9 @@ const resourseLoad = (response, pathToFiles, url) => {
   const promises = ($('img, link, script')
     .map((i, el) => {
       const { name } = el;
-      const linkToResourse = new URL($(el).attr(source[name]), url.origin);
-      if (linkToResourse.origin !== url.origin) {
+      const sourceName = $(el).attr(source[name]);
+      const linkToResourse = new URL(sourceName, url.origin);
+      if (linkToResourse.origin !== url.origin || !sourceName) {
         return null;
       }
       const linkToFile = new FileNameFormatter(linkToResourse.href);
