@@ -26,6 +26,7 @@ npm link
 ```bash
 page-loader <url>
 ```
+<a href="https://asciinema.org/a/4Ct5CG5OenH7hgXzUaMw2K1Ol" target="_blank"><img src="https://asciinema.org/a/4Ct5CG5OenH7hgXzUaMw2K1Ol.svg" /></a>
 Изменить это поведение можно с помощью опции -o или --output
 ```bash
 page-loader -o [directory] <url>
